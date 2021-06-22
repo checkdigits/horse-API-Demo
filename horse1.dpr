@@ -6,12 +6,14 @@ program horse1;
 
 uses
   Horse,
+  Horse.ServerStatic,
   System.SysUtils,
   index in 'app\routes\index.pas',
   employee in 'app\routes\employee.pas';
 
 begin
   try
+    THorse.Use(ServerStatic('web'));
     with THorse.Group.Prefix('/apis') do begin
       Route('/')
         .Get(index.API_Index);
